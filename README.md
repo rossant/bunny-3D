@@ -1,36 +1,40 @@
-# bunny-3D
+# Petit Lapin 3D
 
-Prototype browser game **Petit Lapin 3D** built with Babylon.js.
+A child-friendly 3D browser adventure. Guide the rabbit through an authored campaign, avoid marked traps, collect coins, and defeat each boss with water magic.
 
-## Current gameplay
+## What is included
 
-- 10x10 logical grid in a stylized 3D forest
-- animated rabbit and boss models
-- water attacks, boss fireballs, traps, mystery crates, coins and cosmetic shop
-- 100 levels with progressive difficulty
-- mobile and desktop controls
-- local persistent save
+- 24 named levels across six visual themes
+- Progressive boss patterns, telegraphed attacks, optional risky crates, cosmetics, sound, pause, keyboard and touch controls
+- Persistent local progress and coins, with migration from the original save format
+- Local Babylon.js runtime and CC0 character models: play works without third-party game assets at runtime
+- A Vite production build and a single maintained game entry point
 
-## Persistence
+## Development
 
-Progress is stored in `localStorage` under `petit-lapin-3d-save-v3`, with migration from earlier v1/v2 save keys. Coins are credited to the permanent bank immediately when collected, so dying no longer removes them.
-
-Browser storage is scoped to the site origin. To preserve the same save across future releases, deploy future versions to the **same stable URL/domain** rather than a new temporary hostname each time.
-
-## Run locally
-
-Serve the repository over HTTP, for example:
+Requires Node.js 20 or newer.
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:8000`.
+Open the URL printed by Vite. Build the deployable site with:
 
-Babylon.js and the model loader are currently loaded from the Babylon CDN; the character GLB assets are loaded from a public CC0 source.
+```bash
+npm run build
+npm run preview
+```
 
-## License / assets
+The built site is written to `dist/` and can be hosted as a static site.
 
-Game code: project repository license policy TBD.
+## Project layout
 
-Character models used by the prototype come from Quaternius CC0 asset packs.
+- `src/main.js` — game runtime, scene, combat, UI and effects
+- `src/levels.js` — authored campaign data
+- `public/models/` — locally shipped CC0 character GLB files
+- `index.html` and `style.css` — interface and responsive styling
+
+## Credits and licensing
+
+The rabbit and goblin models are from Quaternius CC0 asset packs. Confirm the project code licence before publishing publicly.

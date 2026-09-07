@@ -1,0 +1,19 @@
+{
+  "name": "petit-lapin-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node scripts/validate-campaign.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^9.25.0",
+    "@babylonjs/loaders": "^9.25.0"
+  }
+}

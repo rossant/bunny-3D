@@ -12,13 +12,13 @@
 <div id="menu" class="screen">
   <div class="card">
     <h1>🐰 Petit Lapin 3D</h1>
-    <p>Explore la grille, prends des pièces et des cubes si tu veux, puis bats le boss pour sécuriser ton butin.</p>
+    <p>Explore, évite les trappes marquées, trouve des pièces et bats le boss pour gagner ton butin.</p>
     <p>Niveau : <b id="menuLevel">1</b> · Banque : <span class="coins">🪙 <span id="menuCoins">0</span></span></p>
     <div class="row">
       <button id="playBtn" class="menuBtn primary">Jouer</button>
       <button id="shopOpenBtn" class="menuBtn">Boutique</button>
     </div>
-    <p class="muted">Les trappes sont invisibles la première fois, puis restent révélées pour les tentatives suivantes du niveau. Les cubes sont optionnels : environ 1 sur 10 est mortel.</p>
+    <p class="muted">Les caisses sont optionnelles : certaines peuvent être dangereuses. Les pièces gagnées restent dans ta banque, même si tu recommences.</p>
   </div>
 </div>
 
@@ -31,20 +31,26 @@
 
 <div id="hud" class="hidden">
   <div class="hudBox">
-    <b>Niveau <span id="levelLabel">1</span>/100</b><br>
+    <b><span id="levelTitle">Niveau 1</span> · <span id="levelLabel">1</span>/<span id="levelTotal">24</span></b><br>
     Tentative : 🪙 <span id="runCoins">0</span><br>
     Cubes : <span id="cubeCount">0</span>/10
   </div>
   <div class="hudBox stats">
     Lapin <span id="hpText">100</span>/100
     <div class="bar"><div id="hpBar"></div></div>
+    <div id="shieldStatus" class="shieldStatus" role="status" aria-live="polite">🛡️ Bouclier prêt</div>
     Boss <span id="bossHpText">50</span>/<span id="bossHpMax">50</span>
     <div class="bar bossbar"><div id="bossHpBar"></div></div>
+  </div>
+  <div id="objective" class="hudBox objective" role="status" aria-live="polite">
+    <span class="objectiveLabel">Objectif</span><br>
+    <span id="objectiveText">Explore la grille et bats le boss !</span>
   </div>
 </div>
 
 <div id="modeBadge" class="hidden">EAU : <b id="modeText">LARGE</b></div>
 <button id="soundBtn" class="soundBtn" aria-label="Activer ou couper le son">🔊</button>
+<button id="pauseBtn" class="pauseBtn hidden" aria-label="Mettre le jeu en pause" aria-controls="pauseScreen">Ⅱ</button>
 <div id="message"></div>
 <div id="loading3d" class="loading3d hidden">Chargement des personnages 3D…</div>
 
@@ -57,7 +63,32 @@
   </div>
   <div class="attacks">
     <button id="modeBtn" class="modeBtn">MODE<br><span id="modeBtnText">LARGE</span></button>
+    <button id="scannerBtn" class="scannerBtn" type="button" aria-label="Utiliser le scanner de caisses" aria-describedby="scannerLabel">🔎<span id="scannerLabel">SCANNER</span></button>
     <button id="waterBtn" class="waterBtn">💧<span>EAU</span></button>
+  </div>
+</div>
+
+<div id="bossIntro" class="bossIntro hidden" role="dialog" aria-modal="true" aria-labelledby="bossIntroTitle" aria-describedby="bossIntroText">
+  <div class="bossIntroCard">
+    <div class="bossIntroEyebrow">⚠️ Attention, lapin !</div>
+    <h2 id="bossIntroTitle">Le boss arrive !</h2>
+    <p id="bossIntroText">Reste mobile, esquive ses attaques et arrose-le avec ton jet d’eau.</p>
+  </div>
+</div>
+
+<div id="pauseScreen" class="screen hidden" aria-hidden="true">
+  <div class="card pauseCard" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+    <h1 id="pauseTitle">Pause</h1>
+    <p>Le petit lapin reprend son souffle. Prêt à continuer ?</p>
+    <div class="row center">
+      <button id="resumeBtn" class="menuBtn primary">Continuer</button>
+      <button id="pauseMenuBtn" class="menuBtn">Menu</button>
+    </div>
+    <button id="settingsBtn" class="textBtn" type="button">⚙ Réglages</button>
+    <div id="settingsPanel" class="settingsPanel hidden" aria-label="Réglages">
+      <button id="settingsSoundBtn" class="menuBtn" type="button">🔊 Son activé</button>
+      <p class="muted">Les animations suivent le réglage « réduire les animations » de ton appareil.</p>
+    </div>
   </div>
 </div>
 
@@ -71,13 +102,6 @@
 <p class="credits">Modèles 3D CC0 : Quaternius.</p>
 </div></div>
 
-<script src="https://cdn.babylonjs.com/babylon.js"></script>
-<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-<script src="app1.js"></script>
-<script src="app2.js"></script>
-<script src="app3.js"></script>
-<script src="app4.js"></script>
-<script src="app5.js"></script>
-<script src="app6.js"></script>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>
